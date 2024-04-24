@@ -1,0 +1,102 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="BusBookingMaster.master.cs" Inherits="SLTBweb.BusBookingMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>SLTB Ticket Booking</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+
+    <style>
+        .navbar {
+            background-color: #c7102f !important;
+            border-color: #c7102f !important;
+        }
+
+        .navbar-default .navbar-brand {
+            color: #ffffff !important;
+        }
+
+        .navbar-default .navbar-nav > li > a {
+            color: #ffffff !important;
+        }
+
+        .navbar-default .navbar-nav > li > a:hover,
+        .navbar-default .navbar-nav > li > a:focus {
+            color: #ffffff !important;
+            background-color: #1ab188 !important;
+        }
+
+        .navbar-default .navbar-toggle .icon-bar {
+            background-color: #ffffff !important;
+        }
+
+        .navbar-default .navbar-toggle:focus, 
+        .navbar-default .navbar-toggle:hover {
+            background-color: #1ab188 !important;
+        }
+        body {
+        background: #111111 url(//2.bp.blogspot.com/-j5N2cp6kXZM/VavIDY5_95I/AAAAAAAALxE/s_MfDBf9MKI/s0/langama_CTB_BACKGROUND_TEXTURE_SLTB_OLD_CLASSIC_DARK_FINALE_croped.jpg) repeat scroll top left;
+        background-repeat: no-repeat;
+        background-size: cover; /* Adjust as needed */
+    }
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="Default.aspx" class="navbar-brand">
+                        SLTB TICKET BOOKING
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a runat="server" href="Default.aspx" style="font-weight: bold">Home</a></li>
+                        <li><a runat="server" href="AboutUs.aspx" style="font-weight: bold">About Us</a></li>
+                          <li><a runat="server" href="Home.aspx" id="A2" style="font-weight: bold" title="Search Buses">Search Buses</a></li>
+                        <% if (Session["UserID"] != null)
+                           { %>
+                        <li><a runat="server" href="BookingReport.aspx" id="lnkDashboard" style="font-weight: bold">Booking Report</a></li>
+                        <%} %>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <% if (Session["UserID"] == null)
+                           { %>
+                        <li><a runat="server" href="Admin/AdminLogin.aspx" style="font-weight: bold">Admin</a></li>
+                        <li><a runat="server" href="UserRegistration.aspx" id="linkRegister" style="font-weight: bold"><i class="glyphicon glyphicon-user"></i> Registration</a></li>
+                        <li><a runat="server" href="Login.aspx" id="linkLogin" style="font-weight: bold" title="Login">Login</a></li>
+                        
+
+                        <%}else{ %>
+                        <li>
+                           Hii!!! <asp:Label ID="lblName" runat="server" Font-Bold="true"></asp:Label>
+                           <asp:Button ID="btnLogout" runat="server" CssClass="alert-success" Text="Logout" OnClick="btnLogout_Click" />
+                        </li>
+                        <%} %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+         
+    </form>
+     <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.4.1.js"></script>
+</body>
+</html>
